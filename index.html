@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splat Bros Mobile Arena — We Bring The Splat To You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 20%, rgba(220,20,20,.15), transparent),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(220,20,20,.08), transparent),
+                #0a0a0a;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(220,20,20,.12);
+            border: 1px solid rgba(220,20,20,.3);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: .85rem;
+            font-weight: 600;
+            color: #ff4444;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 32px;
+            animation: fadeDown .8s ease;
+        }
+        .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: #ff4444; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+        @keyframes fadeDown { 0% { opacity: 0; transform: translateY(-16px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero h1 {
+            font-family: 'Black Ops One', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 30%, #ff4444 70%, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeUp .8s .1s both;
+        }
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            color: #aaa;
+            letter-spacing: .04em;
+            margin-bottom: 12px;
+            animation: fadeUp .8s .2s both;
+        }
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #777;
+            max-width: 520px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: fadeUp .8s .3s both;
+        }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(24px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp .8s .4s both; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all .2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #e60000, #cc0000);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(220,20,20,.4);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(220,20,20,.5); }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,.2);
+        }
+        .btn-outline:hover { border-color: #ff4444; background: rgba(220,20,20,.1); }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        .hero-scroll .arrow { width: 20px; height: 20px; border-right: 2px solid #555; border-bottom: 2px solid #555; transform: rotate(45deg); }
+
+        /* ─── SECTIONS ─── */
+        section { padding: 100px 0; }
+        .section-label {
+            display: inline-block;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #ff4444;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            color: #888;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* ─── WHAT WE OFFER ─── */
+        #services { background: #0f0f0f; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .service-card {
+            background: #1a1a1a;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all .3s;
+        }
+        .service-card:hover { border-color: #ff4444; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(220,20,20,.12); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .service-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; }
+        .service-card p { font-size: .92rem; color: #888; line-height: 1.6; }
+
+        /* ─── HOW IT WORKS ─── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+            counter-reset: step;
+        }
+        .step {
+            text-align: center;
+            counter-increment: step;
+        }
+        .step-num {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e60000, #cc0000);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 20px rgba(220,20,20,.3);
+        }
+        .step h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+        .step p { font-size: .92rem; color: #888; line-height: 1.6; max-width: 280px; margin: 0 auto; }
+
+        /* ─── TESTIMONIALS ─── */
+        #testimonials { background: #0f0f0f; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .testimonial {
+            background: #1a1a1a;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .testimonial .quote {
+            font-size: .95rem;
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+        .testimonial .author { font-weight: 700; font-size: .9rem; }
+        .testimonial .role { font-size: .8rem; color: #666; margin-top: 4px; }
+
+        /* ─── CTA ─── */
+        #cta {
+            text-align: center;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 50%, rgba(220,20,20,.10), transparent);
+        }
+        #cta .section-title { font-size: clamp(2rem, 5vw, 3.5rem); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 40px 0;
+            text-align: center;
+            color: #555;
+            font-size: .85rem;
+        }
+        footer .social { display: flex; gap: 16px; justify-content: center; margin-bottom: 16px; }
+        footer .social a {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 1px solid #222;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: all .2s;
+        }
+        footer .social a:hover { border-color: #ff4444; background: rgba(220,20,20,.1); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .hero-actions .btn { width: 100%; justify-content: center; }
+            .services-grid, .steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="hero-badge"><span></span> Mobile Arena — We Come To You</div>
+    <h1>SPLAT BROS</h1>
+    <p class="tagline">🎯 We bring the gel blaster action to YOU</p>
+    <p class="sub">Inflatable bunkers · Scoreboards · Referees · Masks & safety gear —<br>the whole mobile arena rolls up to your event.</p>
+    <div class="hero-actions">
+        <a href="#" class="btn btn-primary">📲 Book Now</a>
+        <a href="#" class="btn btn-outline">🎥 Watch The Action</a>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="arrow"></div>
+    </div>
+</section>
+
+<!-- ═══ WHAT WE OFFER ═══ -->
+<section id="services">
+    <div class="container">
+        <span class="section-label">⚡ What We Bring</span>
+        <h2 class="section-title">The Full Arena Experience</h2>
+        <p class="section-desc">We show up with everything needed for an unforgettable day of high-energy, safe gel blaster battles.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏰</div>
+                <h3>Inflatable Bunkers</h3>
+                <p>Full arena setup with cover, bunkers, and obstacles — transforms any space into a battlefield.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔫</div>
+                <h3>Gel Blasters & Ammo</h3>
+                <p>All equipment provided. Splat rounds are non-toxic, water-based, and completely safe. Just show up and play.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Masks & Safety Gear</h3>
+                <p>Full-face protection for every player. Safety is non-negotiable — we enforce it so everyone has fun.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Scoreboards & Referees</h3>
+                <p>Live scoring, team battles (red vs blue), and certified refs keeping the action fair and hype.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎶</div>
+                <h3>Sound System & Vibes</h3>
+                <p>High-energy music, announcer calls, and an atmosphere that turns your event into a memory.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚚</div>
+                <h3>We Come To You</h3>
+                <p>Birthday parties, community events, block parties, school functions — wherever you are, we roll in.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section id="how-it-works">
+    <div class="container">
+        <span class="section-label">📋 Simple Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">Three easy steps to bring the splat to your next event.</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Reach Out</h3>
+                <p>DM us on Instagram or hit the Book Now button. Tell us your date, location, and how many players.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>We Lock It In</h3>
+                <p>We confirm availability, handle the details, and get you on the calendar. Dates go FAST — don't wait.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>We Roll In</h3>
+                <p>We show up, set up the full arena, and handle everything. You just bring the energy. Splat. Laugh. Repeat.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+    <div class="container">
+        <span class="section-label">💬 Love From The Community</span>
+        <h2 class="section-title">What People Are Saying</h2>
+        <p class="section-desc">Real events, real smiles — this isn't just a game, it's an experience.</p>
+
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="quote">"This isn't just a game — this is an experience. From the energy, to the setup, to the smiles on every kid's face… this is what happens when you bring Splat Bros to your event."</p>
+                <p class="author">— Community Event</p>
+                <p class="role">Easter Egg Hunt with the Pipal Group</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"Them kids never let us forget about that scoreboard either. My boy knocked the bunker over — hey, it happens!"</p>
+                <p class="author">— Birthday Party Host</p>
+                <p class="role">Splat Bros Birthday Experience</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"6K Birthday Fun Run & Walkathon with free food, music, and kids' activities — Splat Bros brought the energy and the love was unmatched 💯"</p>
+                <p class="author">— Next Level Gen Com</p>
+                <p class="role">Community Partnership</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+    <div class="container">
+        <span class="section-label">📅 Dates Are Going Fast</span>
+        <h2 class="section-title">Lock In Your Date<br>Before It's Gone</h2>
+        <p class="section-desc" style="margin: 0 auto 40px;">We're already booking weeks out. Don't wait until your date is gone.</p>
+        <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 44px;">📲 DM Us To Book</a>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="container">
+        <div class="social">
+            <a href="https://www.instagram.com/splatbrosmobilearena" target="_blank" aria-label="Instagram">📷</a>
+        </div>
+        <p>© 2026 Splat Bros Mobile Arena. All rights reserved. ❤️🖤</p>
+        <p style="margin-top: 4px;">We bring the splat to where you're at.</p>
+    </div>
+</footer>
+
+</body>
+</html>
