@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cowboy Dip — A Taste That Kicks Harder Than a Bull!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700;800;900&family=Passion+One:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #faf3e8;
+            color: #3d2b1f;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── WOOD TEXTURE OVERLAY ─── */
+        .wood-bg {
+            background:
+                linear-gradient(135deg, #5c3a1e 0%, #8b5e34 30%, #6b4423 60%, #4a2c12 100%);
+            position: relative;
+        }
+        .wood-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 60px,
+                rgba(0,0,0,.04) 60px,
+                rgba(0,0,0,.04) 61px
+            );
+            pointer-events: none;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #faf3e8);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: #f5c842;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 24px;
+            animation: fadeDown .8s ease;
+        }
+
+        @keyframes fadeDown { 0% { opacity: 0; transform: translateY(-16px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero .pre-title {
+            font-size: .95rem;
+            font-weight: 700;
+            color: #f5c842;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            animation: fadeUp .8s .1s both;
+        }
+        .hero h1 {
+            font-family: 'Passion One', cursive;
+            font-size: clamp(4rem, 12vw, 9rem);
+            line-height: .9;
+            text-transform: uppercase;
+            color: #f5c842;
+            text-shadow:
+                3px 3px 0 #3d2b1f,
+                -1px -1px 0 #3d2b1f,
+                1px -1px 0 #3d2b1f,
+                -1px 1px 0 #3d2b1f,
+                0 4px 0 #2a1a0e;
+            letter-spacing: 2px;
+            animation: fadeUp .8s .2s both;
+            position: relative;
+        }
+        .hero h1::after {
+            content: '🔥';
+            font-size: clamp(2rem, 5vw, 4rem);
+            position: absolute;
+            right: -60px;
+            top: -10px;
+            text-shadow: none;
+        }
+        .hero .sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #e8d5b8;
+            max-width: 550px;
+            margin: 16px 0 32px;
+            line-height: 1.6;
+            font-weight: 500;
+            animation: fadeUp .8s .3s both;
+        }
+
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(24px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp .8s .4s both; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all .2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: #f5c842;
+            color: #3d2b1f;
+            box-shadow: 0 4px 24px rgba(245,200,66,.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,200,66,.45); }
+        .btn-outline {
+            background: transparent;
+            color: #f5c842;
+            border: 2px solid rgba(245,200,66,.35);
+        }
+        .btn-outline:hover { border-color: #f5c842; background: rgba(245,200,66,.08); }
+
+        /* ─── SECTION ─── */
+        section { padding: 80px 0; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #c75b1e;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Passion One', cursive;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            color: #3d2b1f;
+        }
+        .section-desc {
+            color: #7a5e3e;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* ─── ABOUT / BULLET LIST ─── */
+        #about { background: #fff8ef; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .about-list { list-style: none; }
+        .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e8d5b8;
+            font-size: 1rem;
+            color: #5c4030;
+            line-height: 1.5;
+        }
+        .about-list li:last-child { border: none; }
+        .about-list .emoji { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+        .about-pricing {
+            background: linear-gradient(135deg, #3d2b1f, #5c3a1e);
+            border-radius: 24px;
+            padding: 40px;
+            color: #fff;
+            text-align: center;
+        }
+        .about-pricing .price { font-family: 'Passion One', cursive; font-size: 4rem; color: #f5c842; line-height: 1; }
+        .about-pricing .price-sub { font-size: .9rem; color: #e8d5b8; margin: 8px 0 16px; }
+        .about-pricing .includes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .about-pricing .includes span {
+            font-size: .9rem;
+            color: #d4bfa0;
+        }
+        .about-pricing .warning {
+            background: rgba(245,200,66,.12);
+            border: 1px solid rgba(245,200,66,.25);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-weight: 700;
+            color: #f5c842;
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ─── ORDER FORM ─── */
+        #order { background: #faf3e8; }
+        .order-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 40px;
+            align-items: start;
+        }
+        .order-form {
+            background: #fff8ef;
+            border: 2px solid #e8d5b8;
+            border-radius: 24px;
+            padding: 36px;
+        }
+        .order-form label {
+            display: block;
+            font-weight: 700;
+            font-size: .85rem;
+            color: #5c4030;
+            margin-bottom: 6px;
+        }
+        .order-form input,
+        .order-form textarea,
+        .order-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8d5b8;
+            border-radius: 12px;
+            background: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem;
+            color: #3d2b1f;
+            outline: none;
+            transition: border .2s;
+            margin-bottom: 20px;
+        }
+        .order-form input:focus,
+        .order-form textarea:focus,
+        .order-form select:focus {
+            border-color: #f5c842;
+        }
+        .order-form textarea { resize: vertical; min-height: 80px; }
+        .order-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .order-form .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5c842, #e0a800);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Passion One', cursive;
+            font-size: 1.4rem;
+            color: #3d2b1f;
+            cursor: pointer;
+            transition: all .2s;
+            letter-spacing: .05em;
+        }
+        .order-form .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245,200,66,.4);
+        }
+
+        .order-info {
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e8d5b8' fill-opacity='0.3'%3E%3Cpath d='M0 0h40v40H0z'/%3E%3C/g%3E%3C/svg%3E");
+            padding: 36px;
+            border-radius: 24px;
+        }
+        .order-info h3 {
+            font-family: 'Passion One', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #3d2b1f;
+        }
+        .order-info p {
+            color: #7a5e3e;
+            line-height: 1.7;
+            font-size: .95rem;
+        }
+        .order-info .contact-box {
+            background: #fff;
+            border: 2px solid #e8d5b8;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .order-info .contact-box div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .95rem;
+            color: #3d2b1f;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #3d2b1f;
+            color: #d4bfa0;
+            padding: 40px 0;
+            text-align: center;
+            font-size: .85rem;
+        }
+        footer .logo-text {
+            font-family: 'Passion One', cursive;
+            font-size: 1.5rem;
+            color: #f5c842;
+            margin-bottom: 8px;
+        }
+        footer a { color: #f5c842; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .about-grid,
+            .order-wrapper { grid-template-columns: 1fr; }
+            .order-form .form-row { grid-template-columns: 1fr; }
+            .hero h1::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero wood-bg">
+    <div class="hero-badge">🌶️🔥 Splat Bros x Cowboy Dip</div>
+    <p class="pre-title">Try Our Loaded</p>
+    <h1>COWBOY DIP</h1>
+    <p class="sub">Loaded nacho dip with black beans and corn.<br>A taste that kicks harder than a bull! 🐂</p>
+    <div class="hero-actions">
+        <a href="#order" class="btn btn-primary">📲 Order Now</a>
+        <a href="#about" class="btn btn-outline">👇 What's In It</a>
+    </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+    <div class="container">
+        <span class="section-label">🌮 What's In The Bowl</span>
+        <h2 class="section-title">Better Than Any Rotel<br>You've Ever Had</h2>
+
+        <div class="about-grid">
+            <div>
+                <ul class="about-list">
+                    <li><span class="emoji">🧀</span> <span><strong>Melted Cheese</strong> — thick, gooey, loaded with flavor</span></li>
+                    <li><span class="emoji">🥩</span> <span><strong>Ground Meat</strong> — seasoned and hearty</span></li>
+                    <li><span class="emoji">🫘</span> <span><strong>Black Beans & Corn</strong> — texture in every bite</span></li>
+                    <li><span class="emoji">🍅</span> <span><strong>Diced Tomatoes & Cilantro</strong> — fresh kick</span></li>
+                    <li><span class="emoji">🌶️</span> <span><strong>Jalapeños</strong> — optional heat, extra flavor</span></li>
+                    <li><span class="emoji">🟠</span> <span><strong>Comes With a Bag of Doritos</strong> — the perfect scoop</span></li>
+                </ul>
+            </div>
+
+            <div class="about-pricing">
+                <div class="price">$10</div>
+                <p class="price-sub">Comes with a bag of Doritos 🟠</p>
+                <div class="includes">
+                    <span>🧀 Loaded with cheese & meat</span>
+                    <span>🫘 Black beans & corn</span>
+                    <span>🌶️ Topped with jalapeños</span>
+                    <span>🟠 Full bag of Doritos included</span>
+                </div>
+                <div class="warning">⚡ SELLS OUT FAST! Order ahead ⚡</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ORDER ═══ -->
+<section id="order">
+    <div class="container">
+        <span class="section-label">📲 Lock In Your Dip</span>
+        <h2 class="section-title">Place Your Order</h2>
+        <p class="section-desc">Sells out fast — let us know how many you want and when you're picking up.</p>
+
+        <div class="order-wrapper">
+            <form class="order-form" id="orderForm" action="https://formsubmit.co/dj2099113@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Cowboy Dip Order!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://automatetechgit.github.io/splatbros-mobile-arena/cowboy-dip/thanks.html">
+
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. John Doe">
+
+                <div class="form-row">
+                    <div>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(863) 555-1234">
+                    </div>
+                    <div>
+                        <label for="qty">How Many?</label>
+                        <select id="qty" name="quantity">
+                            <option value="1">1 — $10</option>
+                            <option value="2">2 — $20</option>
+                            <option value="3">3 — $30</option>
+                            <option value="4">4 — $40</option>
+                            <option value="5">5 — $50</option>
+                            <option value="6">6+ — Contact us</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="pickup">Pickup Date & Time</label>
+                <input type="text" id="pickup" name="pickup_time" required placeholder="e.g. Saturday 2pm">
+
+                <label for="notes">Extra Notes</label>
+                <textarea id="notes" name="notes" placeholder="Extra jalapeños? Any dietary stuff?"></textarea>
+
+                <button type="submit" class="btn-submit">🔥 SEND ORDER</button>
+            </form>
+
+            <div class="order-info">
+                <h3>How It Works</h3>
+                <p>Fill out the form and we'll get back to you to confirm. Pay on pickup — cash or card.</p>
+
+                <div class="contact-box">
+                    <div>📞 <strong>Call or Text:</strong> (863) 359-6685</div>
+                    <div>📷 <strong>DM:</strong> <a href="https://www.instagram.com/splatbrosmobilearena" target="_blank">@splatbrosmobilearena</a></div>
+                    <div>📍 <strong>Pickup:</strong> Sebring, FL (ask for location)</div>
+                    <div>⚡ <strong>Tip:</strong> Order ahead — they sell out FAST!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="container">
+        <div class="logo-text">🤠 COWBOY DIP</div>
+        <p>A taste that kicks harder than a bull! Made fresh by <a href="https://www.instagram.com/splatbrosmobilearena" target="_blank">Splat Bros Mobile Arena</a> ❤️🖤</p>
+        <p style="margin-top: 4px;">Better than any Rotel you've ever had. 🌮</p>
+    </div>
+</footer>
+
+</body>
+</html>
