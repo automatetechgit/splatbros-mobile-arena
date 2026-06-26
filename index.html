@@ -223,6 +223,44 @@
         .testimonial .author { font-weight: 700; font-size: .9rem; }
         .testimonial .role { font-size: .8rem; color: #666; margin-top: 4px; }
 
+        /* ─── COWBOY DIP PROMO ─── */
+        .cowboy-promo {
+            background: linear-gradient(135deg, #5c3a1e 0%, #8b5e34 30%, #6b4423 60%, #4a2c12 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cowboy-promo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,0,0,.04) 60px, rgba(0,0,0,.04) 61px);
+            pointer-events: none;
+        }
+        .cowboy-promo .section-label { color: #f5c842; }
+        .cowboy-promo .section-title { color: #f5c842; text-shadow: 2px 2px 0 #3d2b1f; }
+        .cowboy-promo .section-desc { color: #e8d5b8; margin: 0 auto 32px; }
+        .cowboy-promo .btn-cowboy {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 40px;
+            background: #f5c842;
+            color: #3d2b1f;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all .2s;
+            box-shadow: 0 4px 24px rgba(245,200,66,.3);
+        }
+        .cowboy-promo .btn-cowboy:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,200,66,.45); }
+        .cowboy-promo .price-tag {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: .9rem;
+            color: #d4bfa0;
+        }
+
         /* ─── CTA ─── */
         #cta {
             text-align: center;
@@ -374,6 +412,17 @@
     </div>
 </section>
 
+<!-- ═══ COWBOY DIP PROMO ═══ -->
+<section class="cowboy-promo">
+    <div class="container">
+        <span class="section-label">🌮🤠 Try Our Loaded</span>
+        <h2 class="section-title">COWBOY DIP</h2>
+        <p class="section-desc">Loaded nacho dip with black beans and corn.<br>Better than any Rotel you've ever had!<br>
+        <span class="price-tag">🔥 $10 · Comes with a bag of Doritos 🔥</span></p>
+        <a href="cowboy-dip/" class="btn-cowboy">🥩 Order Cowboy Dip →</a>
+    </div>
+</section>
+
 <!-- ═══ CTA ═══ -->
 <section id="cta">
     <div class="container">
@@ -392,6 +441,7 @@
         </div>
         <p>© 2026 Splat Bros Mobile Arena. All rights reserved. ❤️🖤</p>
         <p style="margin-top: 4px;">We bring the splat to where you're at.</p>
+        <p style="margin-top: 8px; font-size: .8rem;">🌮 Grab some <a href="cowboy-dip/" style="color:#f5c842; text-decoration:underline;">Cowboy Dip</a> while you're here</p>
     </div>
 </footer>
 
